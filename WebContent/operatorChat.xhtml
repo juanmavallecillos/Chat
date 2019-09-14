@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+    
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Operator Chat</title>
+	<h:outputStylesheet library="css" name="style.css"/>
+	<h:outputScript library="js" name="websockets.js" />
+</h:head>
+
+<h:body>
+	<h:panelGroup>
+		<h:form class="chat" prependId="false">
+			<h:inputHidden id="channelId" value="#{operatorLoginBean.operatorId}" />
+			<h:inputHidden id="userName" value="#{operatorLoginBean.login}" />
+			<h:outputText value="History" />
+			<br/>
+			<h:inputTextarea id="historyBox" rows="10" cols="100" value="#{operatorChatBean.history}" readonly="true" />
+			<br/>
+			<h:outputText value="Message:" />
+			<br/>
+			<h:inputTextarea id="textBox" rows="2" cols="100" />
+			<br/>
+			<h:commandButton value="Envia" onclick="sendChatMessage(); return false;" />
+		</h:form>
+		<h:form prependId="false" class="activeChats" id="conversation_list">
+	        <p>Active Users</p>
+	        <h:commandButton id="refresh" style="display:none" action="#{operatorChatController.refreshConversations()}">
+	        	<f:ajax render="conversation_list" />
+	        </h:commandButton>
+	        <ui:repeat var="convD" value="#{operatorChatBean.conversations}" rendered="#{not empty operatorChatBean.conversations}">
+					<h:commandLink 
+					value="#{convD.user}" 
+					style="#{convD.conversationLinkStyle}"
+					action="#{operatorChatController.changeToConversation(convD)}" />
+					<br />
+					<br />
+			</ui:repeat>
+			<h:outputText value="No active chats yet." rendered="#{empty operatorChatBean.conversations}" />
+		</h:form>
+	</h:panelGroup>
+</h:body>
+</html>

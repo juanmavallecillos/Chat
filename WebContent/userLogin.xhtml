@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+
+<!-- <f:loadBundle basename="resources.application" var="msg"/> -->
+
+<h:head>
+    <title>User Login</title>
+</h:head>
+
+<h:body>
+<h2><h:outputText value="User Identification"/></h2>
+<hr/>
+	<h:form prependId="false"> 
+		<h:outputText value="Name"/>
+		<h:inputText id="name" value="#{userLoginBean.name}">
+			<f:ajax event="keyup" execute="name" render="button nameShow" />
+		</h:inputText><br/>
+		<h:outputText value="Category"/>
+		<h:selectOneMenu id="category" value="#{userLoginBean.selectedCategory}">
+			<f:ajax execute="category" render="subCategory categoryShow" />
+			<f:selectItems value="#{userLoginController.categories}" />
+		</h:selectOneMenu><br/>
+		<h:outputText value="Subcategory"/>
+		<h:selectOneMenu id="subCategory" value="#{userLoginBean.selectedSubCategory}">
+			<f:selectItems value="#{userLoginController.subCategories}" />
+		</h:selectOneMenu><br/>
+		<h:commandButton id="button" value="Start Chat" disabled="#{empty userLoginBean.name}" action="#{userLoginController.createConversation()}"/>
+	</h:form>
+</h:body>
+</html>

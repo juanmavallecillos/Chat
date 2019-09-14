@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Operator Login</title>
+</head>
+<h:body>
+	<h:form prependId="false">
+  		<h:outputText value="Login "/><br/>
+	 	<h:inputText id="username" value="#{operatorLoginBean.login}" required="true" requiredMessage="Value is required"/><br/>
+	  	<h:message for="username" style="color:red"/><br/>
+	 	<h:outputText value=" Password "/><br/>
+	  	<h:inputSecret id="password" value="#{operatorLoginBean.passwd}" required="true" requiredMessage="Value is required"/><br/>
+	  	<h:message for="password" style="color:red"/><br/>
+	  	<h:commandButton value="Sign in" action="#{operatorLoginController.verifyUser()}"/><br/>
+	  	<h:messages style="color:red" globalOnly="true" redisplay="false"/><br/>
+  	</h:form>
+</h:body>
+</html>

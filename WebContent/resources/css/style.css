@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.chat {
+	width:720px;
+	float:left;
+}
+
+.activeChats {
+	float:left;
+	border: 2px solid black;
+	padding:10px;
+	margin-left: 10px
+}

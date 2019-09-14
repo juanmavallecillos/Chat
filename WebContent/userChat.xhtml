@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>User Chat</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <h:outputScript library="js" name="websockets.js" />
+</h:head>
+<h:body>
+
+	<h:form prependId="false"> 
+		<h:inputHidden id="channelId" value="#{userLoginBean.conversationId}" />
+		<h:inputHidden id="userName" value="#{userLoginBean.name}" />
+		<h:outputText value="History" />
+		<br/>
+		<h:inputTextarea id="historyBox" rows="10" cols="100" value="This is your chat box, as soon as you
+		write your message will appear here!" readonly="true" />
+		<br/>
+		<h:outputText value="Message:" />
+		<br/>
+		<h:inputTextarea id="textBox" rows="2" cols="100" />
+		<br/>
+		<h:commandButton value="Envia" onclick="sendChatMessage(); return false;" />
+	</h:form>
+		
+		
+</h:body>
+</html>
